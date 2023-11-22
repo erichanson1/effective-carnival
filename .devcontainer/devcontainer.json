@@ -1,0 +1,19 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/php:8.2-bullseye",
+  "features": {
+    "https://cdn.getyourguide.com/public-hosting/gyghub/devcontainer-features/devcontainer-feature-gygauth.tgz": {},
+    "https://cdn.getyourguide.com/public-hosting/gyghub/devcontainer-features/devcontainer-feature-tunnel.tgz": {},
+  },
+  "containerEnv": {
+    // needed for CLI execution FIXME: reuse them in apache
+    "GYG_CONFIG_CONFIGS_DIR": "/workspaces/fishfarm/configs/development/config",
+    "GYG_CONFIG_SECRETS_DIR": "/workspaces/fishfarm/.devcontainer/secrets",
+    "AURORA_MYSQL_DB_HOST": "127.0.0.1",
+    "ES7_HOST": "127.0.0.1",
+    "ES7_PORT": "9200",
+    "AWS_PROFILE": "testing/gygservice-fishfarm",
+  },
+  "onCreateCommand": "./.devcontainer/install.sh || true", // temp fix for image broken in 8.2
+  "postStartCommand": "./.devcontainer/onstart.sh",
+  "remoteUser": "root"
+}
